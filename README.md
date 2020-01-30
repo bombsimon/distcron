@@ -18,7 +18,7 @@ a process!
 func main() {
     dc := distcron.New().
         WithLogger(cron.VerbosePrintfLogger(log.New(os.Stdout, "cron: ", log.LstdFlags))).
-        AddJob("* * * * * ", "my-job", myJob)
+        AddJob("* * * * *", "my-job", myJob)
 
     if err := dc.Run(); err != nil {
         panic(err)
@@ -73,6 +73,6 @@ several loggers such as `log` from standard library and
 
 ## References
 
-* [robfig/cron](github.com/robfig/cron)
+* [robfig/cron](https://github.com/robfig/cron)
 * [go-redsync/redsync]( https://github.com/go-redsync/redsync)
 * [gomodule/redigo](https://github.com/gomodule/redigo)
