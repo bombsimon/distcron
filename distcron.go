@@ -184,7 +184,7 @@ func (s *Schedule) lock(pool redsync.Pool, name string, f func()) func() {
 			return
 		}
 
-		if !mutex.Unlock() {
+		if ok, err := mutex.Unlock(); !ok || err != nil {
 			s.logger.Error(errors.New("unlock failed"), "unlock did not return a true value")
 		}
 
@@ -206,7 +206,7 @@ func (s *Schedule) lock(pool redsync.Pool, name string, f func()) func() {
 			s.logger.Error(err, "could not remove job lock")
 		}
 
-		if !mutex.Unlock() {
+		if ok, err := mutex.Unlock(); !ok || err != nil {
 			s.logger.Error(errors.New("unlock failed"), "unlock did not return a true value")
 		}
 	}
